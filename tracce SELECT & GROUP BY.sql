@@ -37,9 +37,9 @@ SELECT COUNT(name) AS 'Numero totale di dipartimenti'
 FROM `departments`;
 
 -- 8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50)
-SELECT COUNT(phone) AS 'Totale insegnanti senza numero di telefono' 
+SELECT COUNT(*) AS 'Totale insegnanti senza numero di telefono' 
 FROM `teachers`
-WHERE `phone` IS NOT NULL;
+WHERE `phone` IS NULL;
 
 
 -- ------------------------------------------ QUERY CON GROUP BY
@@ -64,3 +64,29 @@ GROUP BY (`Appello`);
 SELECT `department_id` AS 'Dipartimenti', COUNT(`name`) AS 'Numero corsi di laurea'
 FROM `degrees`
 GROUP BY `Dipartimenti`;
+
+
+-- ------------------------------------------ QUERY CON JOIN
+-- 1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
+SELECT `students`.`name` AS 'Nome', `students`.`surname` AS 'Cognome', `degrees`.`name` AS 'Corso'
+FROM `students`
+JOIN `degrees`
+ON `degrees`.`id` = `students`.`degree_id`
+WHERE `degrees`.`name` = 'Corso di Laurea in Economia';
+
+-- 2. Selezionare tutti i Corsi di Laurea del Dipartimento di Neuroscienze
+
+
+-- 3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+
+
+-- 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome
+
+
+-- 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
+
+
+-- 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
+
+
+-- 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
